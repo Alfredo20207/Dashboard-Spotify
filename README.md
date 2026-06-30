@@ -23,3 +23,10 @@ Sigue estos pasos para correr el proyecto en tu entorno local:
 1. **Clona este repositorio:**
    ```bash
    git clone [https://github.com/tu-usuario/dash-spotify.git](https://github.com/tu-usuario/dash-spotify.git)
+   
+2. **Instala las dependencias :**
+   ```bash
+   npm install
+3.  **Inicia servidor en desarrollo :**
+   ```bash
+   npm run dev
