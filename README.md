@@ -1,16 +1,32 @@
-# React + Vite
+# 🎵 Spotify Data Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Un dashboard interactivo construido con React y Vite para la visualización y análisis de datos de Spotify. Este proyecto procesa un dataset extraído de Kaggle (en formato CSV) y renderiza métricas clave sobre la popularidad de las canciones, artistas y duraciones de las pistas en una interfaz moderna y responsiva.
 
-Currently, two official plugins are available:
+## ✨ Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Visualización de Datos Dinámica:** Gráficos interactivos generados a partir de datos crudos utilizando Recharts.
+* **Procesamiento de CSV en el Cliente:** Lectura y transformación de archivos locales `.csv` a formato JSON en tiempo real mediante PapaParse.
+* **Interfaz de Usuario Moderna:** Diseño estilizado con Tailwind CSS, emulando la estética oscura característica de Spotify.
+* **Análisis de Popularidad:** Algoritmos de filtrado y ordenamiento para mostrar el Top 10 de canciones basado en su índice de popularidad.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Framework:** [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+* **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
+* **Procesamiento de Datos:** [PapaParse](https://www.papaparse.com/)
+* **Visualización (Gráficas):** [Recharts](https://recharts.org/)
 
-## Expanding the Oxlint configuration
+## 🚀 Instalación y Uso
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Sigue estos pasos para correr el proyecto en tu entorno local:
+
+1. **Clona este repositorio:**
+   ```bash
+   git clone [https://github.com/tu-usuario/dash-spotify.git](https://github.com/tu-usuario/dash-spotify.git)
+   
+2. **Instala las dependencias :**
+   ```bash
+   npm install
+3.  **Inicia servidor en desarrollo :**
+   ```bash
+   npm run dev
