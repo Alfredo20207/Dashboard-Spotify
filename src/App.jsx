@@ -25,7 +25,8 @@ export default function SpotifyChart() {
   const [loading, setLoading] = useState(true); // Nuevo estado para saber si está cargando
 
   useEffect(() => {
-    fetch('/spotify_data_clean.csv') 
+    
+    fetch('./spotify_data_clean.csv') 
       .then(response => response.text())
       .then(csvText => {
         // Función interna para procesar los datos una vez descifrado el delimitador
