@@ -23,6 +23,15 @@ export default function SpotifyChart() {
   const [metric, setMetric] = useState('track_popularity');
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(true); // Nuevo estado para saber si está cargando
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si estamos en un dispositivo móvil
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // chequeo inicial
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     
@@ -84,17 +93,17 @@ export default function SpotifyChart() {
     .slice(0, limit);
 
   // Función para recortar nombres muy largos y que no se amontonen
-  const truncateText = (text, maxLength = 25) => {
+  const truncateText = (text, maxLength) => {
     if (!text) return "";
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
   return (
-    <div className="w-full p-6 bg-gray-900 text-white rounded-xl shadow-lg">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-        <h2 className="text-2xl font-bold text-[#1DB954]">Canciones mas escuchadas de spotify</h2>
+    <div className="w-full p-4 md:p-6 bg-gray-900 text-white rounded-xl shadow-lg">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 text-center md:text-left">
+        <h2 className="text-xl md:text-2xl font-bold text-[#1DB954]">Canciones mas escuchadas de spotify</h2>
         
-        <div className="flex gap-3 text-sm text-gray-900 font-medium">
+        <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-900 font-medium">
           <select 
             className="p-2 rounded bg-white outline-none cursor-pointer hover:bg-gray-100 transition"
             value={metric} 
@@ -131,17 +140,17 @@ export default function SpotifyChart() {
             <BarChart 
               data={displayedData} 
               layout="vertical" 
-              margin={{ top: 5, right: 30, left: 150, bottom: 5 }}
+              margin={{ top: 5, right: isMobile ? 10 : 30, left: 0, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#333" horizontal={false} />
-              <XAxis type="number" dataKey={metric} stroke="#ccc" />
+              <XAxis type="number" dataKey={metric} stroke="#ccc" tick={{ fontSize: isMobile ? 11 : 13 }} />
               <YAxis 
                 type="category" 
                 dataKey="track_name" 
                 stroke="#ccc" 
-                width={200} 
-                tickFormatter={(tick) => truncateText(tick)}
-                tick={{ fontSize: 13 }}
+                width={isMobile ? 100 : 200} 
+                tickFormatter={(tick) => truncateText(tick, isMobile ? 14 : 25)}
+                tick={{ fontSize: isMobile ? 11 : 13 }}
               />
               
               <Tooltip 
@@ -149,7 +158,7 @@ export default function SpotifyChart() {
                 content={<CustomTooltip metric={metric} />}
               />
               
-              <Bar dataKey={metric} fill="#1DB954" radius={[0, 4, 4, 0]} barSize={25} />
+              <Bar dataKey={metric} fill="#1DB954" radius={[0, 4, 4, 0]} barSize={isMobile ? 15 : 25} />
             </BarChart>
           </ResponsiveContainer>
         </div>
